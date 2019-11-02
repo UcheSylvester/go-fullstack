@@ -56,7 +56,7 @@ exports.login = (req, res, next) => {
             { expiresIn: '24h' }
           );
           // sending userId and token to the front end
-          console.log('valid user, token', token)
+          // console.log('valid user, token', token)
           res.status(200).json({
             userId: user._id,
             token: token

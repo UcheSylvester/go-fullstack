@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
+// protecting routes
 const auth = require('../middleware/auth')
+
+// saving images with multer
+const multer = require('../middleware/multer-config')
 
 const stuffController = require('../controllers/stuff')
 
@@ -9,13 +13,13 @@ const stuffController = require('../controllers/stuff')
 router.get('/', auth, stuffController.getAllThings)
 
 // posting things to the database
-router.post('/', auth, stuffController.createThing)
+router.post('/', auth, multer, stuffController.createThing)
 
 // Getting a single thing from the database based on the id
 router.get('/:id', auth, stuffController.getOneThing)
 
 // Updating a single thing in the database based on the id
-router.put('/:id', auth, stuffController.modifyThing)
+router.put('/:id', auth, multer, stuffController.modifyThing)
 
 // Deleting a single thing based on the id
 router.delete('/:id', auth, stuffController.deleteThing)
